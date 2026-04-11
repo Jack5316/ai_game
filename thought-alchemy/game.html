@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Thought Alchemy · 卷宗</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="case-header">
+        <nav
+          id="case-nav"
+          class="case-nav"
+          aria-label="六则故事，点 emoji 切换"
+        ></nav>
+        <p id="case-title" class="case-title" aria-live="polite"></p>
+      </header>
+      <main id="story-board" class="story-board" aria-label="故事板">
+        <div class="story-board__inner"></div>
+      </main>
+      <section class="thought-panel" aria-label="思维面板">
+        <div
+          class="thought-panel__toolbar"
+          role="toolbar"
+          aria-label="卷宗操作"
+        >
+          <a href="index.html" class="thought-panel__back">← 返回协议与规则</a>
+          <div class="thought-panel__toolbar-right">
+            <button
+              type="button"
+              id="btn-hint"
+              class="btn-hint"
+              aria-label="查阅锦囊"
+            >
+              锦囊
+            </button>
+            <button
+              type="button"
+              id="btn-restart"
+              class="btn-restart"
+              aria-label="重新开始本案"
+            >
+              重来
+            </button>
+          </div>
+        </div>
+        <p class="thought-panel__hint">
+          两词碰撞 · 顺序解锁 · 失误扣<strong>理据</strong> · <strong>锦囊</strong>有限次
+        </p>
+        <div
+          id="fault-meter"
+          class="fault-meter"
+          role="status"
+          aria-live="polite"
+        ></div>
+        <div id="inventory" class="inventory" aria-live="polite"></div>
+        <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+      </section>
+    </div>
+    <script type="module" src="js/engine.js"></script>
+  </body>
+</html>
