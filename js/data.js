@@ -84,41 +84,41 @@ export const CASES = [
   },
   {
     id: "horror",
-    emoji: "👻",
-    title: "子夜门响",
+    emoji: "🧑‍🦯",
+    title: "栈道登记表",
     tone: "恐怖（可解释）",
     storyHtml: `
-<p class="story-lead tone-horror">民宿检修记录 · 恐怖氛围</p>
-<p><span class="clue" data-word="子夜">子夜</span>，走廊尽头的房门自己开了一条缝。监控里没有人，温度计读数正常，可所有人感到一阵<span class="clue" data-word="热浪">热浪</span>扑脸。</p>
-<p>老式的<span class="clue" data-word="铜锁">铜锁</span>舌上留着新鲜的压痕，像被什么东西从内侧顶开。</p>
+<p class="story-lead tone-horror">景区安全协查 · 恐怖氛围</p>
+<p>一名盲人<span class="clue" data-word="技术">技术</span>员守在<span class="clue" data-word="悬崖">悬崖</span>栈道尽头。台账上写着：他每天要<span class="clue" data-word="推">推</span>一名访客「下去」。</p>
+<p>直到暴雨那天，他自己从同一位置滑落坠谷——盲杖还卡在护栏边，像一根指路的枯枝。</p>
 `,
-    starters: ["子夜", "热浪", "铜锁"],
+    starters: ["技术", "悬崖", "推"],
     recipes: {
-      "铜锁+热浪": {
+      "悬崖+推": {
         id: "step_fall",
-        text: "金属锁舌在持续升温里微微伸长——热胀。",
-        newWord: "膨胀",
+        text: "栈道尽头接的是单座下山滑道：一次只放行一人。他按规程扳动发车柄，座舱扣合后沿轨道滑向谷底——「推下去」是送客下山，不是把人掀下悬崖。",
+        newWord: "滑道",
       },
-      "子夜+热浪": {
+      "技术+滑道": {
         id: "step_count",
         requires: ["step_fall"],
-        lockedText: "先接受物理，再让「时间」和「温度」第二次碰撞。",
-        text: "午夜空调外机刚切换大功率，走廊气压瞬间抖动，像一口短促的呼吸。",
-        newWord: "对流",
+        lockedText: "先弄清「下去」走的是什么路，再想盲人靠什么重复这套动作。",
+        text: "他看不见远景，只靠触觉与广播核对安全带、闸锁与手柄位置——同一套动作每天做给不同的乘客。",
+        newWord: "规程",
       },
-      "对流+膨胀": {
+      "滑道+规程": {
         id: "step_truth",
         requires: ["step_count"],
-        lockedText: "自然现象齐了，别再留鬼影。",
-        text: "【真相大白】锁舌热胀脱出扣合，气流对冲把门推开——没有灵体，只有金属与风的合谋。",
+        lockedText: "职业与设备都对上了，把悲剧收束成一句可核验的话。",
+        text: "【真相大白】他是滑道操作员；登记里的「每天推一人下去」是放行一名游客乘座舱下山。雨天桥面湿滑，他失足滑落——意外来自环境，不是连环推人。",
         isWin: true,
       },
     },
     hints: {
-      collect: "恐怖来自未知：先把「时间、温度、物件」三个词收齐。",
-      step1: "锁与热，谁先变形？",
-      step2: "子夜与热浪第二次碰撞——想空气怎么走。",
-      step3: "膨胀与对流一起结案。",
+      collect: "先把「岗位、地点、动作」三个词收齐——恐怖往往来自误读。",
+      step1: "「悬崖」和「推」先碰：人是怎么「下去」的？",
+      step2: "「技术」第二次要和「滑道」并置：盲人怎么做这份工？",
+      step3: "「规程」与「滑道」合成最终解释。",
     },
   },
   {
