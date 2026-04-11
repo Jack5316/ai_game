@@ -13,7 +13,7 @@ export const GAME_RULES = {
 
 export const DETECTIVE_BRIEFING = `
 <p class="briefing-kicker">临时顾问协议 · 只读卷宗</p>
-<p class="briefing-body">卷宗里有多桩互不相干的短案。点<strong>emoji</strong>切换故事；每则都要自己收词、对撞、按顺序解锁。错了或顺序错了都会<strong>消耗理据</strong>。</p>
+<p class="briefing-body">卷宗里有多桩互不相干的短案。点<strong>emoji</strong>切换故事；其中一则为经典<strong>盲人悬崖</strong>海龟汤，其余为科技、职场、脑洞等小品。每则都要自己收词、对撞、按顺序解锁；错了或顺序错了都会<strong>消耗理据</strong>。</p>
 <p class="briefing-body briefing-body--warn"><strong>理据归零</strong>即出局。<strong>锦囊</strong>每则独立计数（重来会补满）。</p>
 `;
 
@@ -83,42 +83,44 @@ export const CASES = [
     },
   },
   {
-    id: "horror",
+    id: "blind",
     emoji: "🧑‍🦯",
-    title: "栈道登记表",
-    tone: "恐怖（可解释）",
+    title: "悬崖与八",
+    tone: "经典海龟汤",
     storyHtml: `
-<p class="story-lead tone-horror">景区安全协查 · 恐怖氛围</p>
-<p>一名盲人<span class="clue" data-word="技术">技术</span>员守在<span class="clue" data-word="悬崖">悬崖</span>栈道尽头。台账上写着：他每天要<span class="clue" data-word="推">推</span>一名访客「下去」。</p>
-<p>直到暴雨那天，他自己从同一位置滑落坠谷——盲杖还卡在护栏边，像一根指路的枯枝。</p>
+<p class="story-lead">现场没有第二双脚印，只有风在岩壁上低语。</p>
+<p>一具躯体横在<span class="clue" data-word="悬崖">悬崖</span>之下，衣角还沾着干燥的尘土。没有人记得他曾与人争执，只有人说，他最后像是朝着虚空迈出了一步——像要<span class="clue" data-word="跳下">跳下</span>，又像被什么拽住了呼吸。</p>
+<p>他掌心扣着一张被汗浸软的纸条，上面只有一个<span class="clue" data-word="数字">数字</span>：<strong class="mono">8</strong>。</p>
 `,
-    starters: ["技术", "悬崖", "推"],
+    starters: ["悬崖", "跳下", "数字"],
     recipes: {
-      "悬崖+推": {
+      "悬崖+跳下": {
         id: "step_fall",
-        text: "栈道尽头接的是单座下山滑道：一次只放行一人。他按规程扳动发车柄，座舱扣合后沿轨道滑向谷底——「推下去」是送客下山，不是把人掀下悬崖。",
-        newWord: "滑道",
+        text: "他并非自愿跳下，而是意外滑落。",
+        newWord: "意外",
       },
-      "技术+滑道": {
+      "数字+跳下": {
         id: "step_count",
         requires: ["step_fall"],
-        lockedText: "先弄清「下去」走的是什么路，再想盲人靠什么重复这套动作。",
-        text: "他看不见远景，只靠触觉与广播核对安全带、闸锁与手柄位置——同一套动作每天做给不同的乘客。",
-        newWord: "规程",
+        lockedText:
+          "数字在纸条上沉默：你还没弄清「跳下」在此案里的真正重量。先把坠落定性，再谈计数。",
+        text: "这个数字代表了他数过的东西，到「8」时发生了惨剧。",
+        newWord: "计数",
       },
-      "滑道+规程": {
+      "意外+计数": {
         id: "step_truth",
         requires: ["step_count"],
-        lockedText: "职业与设备都对上了，把悲剧收束成一句可核验的话。",
-        text: "【真相大白】他是滑道操作员；登记里的「每天推一人下去」是放行一名游客乘座舱下山。雨天桥面湿滑，他失足滑落——意外来自环境，不是连环推人。",
+        lockedText:
+          "「意外」与「计数」都已浮现，但中间那环「他究竟在数什么」尚未钉死。顺序错了，炼金只会冒黑烟。",
+        text: "【真相大白】他是一个盲人，每天把人推下悬崖并计数。今天数到 8 时，他不小心踏空了。",
         isWin: true,
       },
     },
     hints: {
-      collect: "先把「岗位、地点、动作」三个词收齐——恐怖往往来自误读。",
-      step1: "「悬崖」和「推」先碰：人是怎么「下去」的？",
-      step2: "「技术」第二次要和「滑道」并置：盲人怎么做这份工？",
-      step3: "「规程」与「滑道」合成最终解释。",
+      collect: "先把三个现场词都点进库：地点、动作、物证上的数。",
+      step1: "第一步：先固定「坠到崖底」的性质——哪两个词能判断这一跳是自愿还是意外？",
+      step2: "第二步：让纸条上的数字与同一条「跳下」叙事并置。",
+      step3: "第三步：把两个新词合拢——谁在数什么？",
     },
   },
   {
@@ -288,7 +290,7 @@ export function getRulesPageHtml() {
   <div class="rules-briefing">${DETECTIVE_BRIEFING}</div>
   <h2 class="rules-subtitle">怎么玩</h2>
   <ul class="rules-list">
-    <li>进入卷宗后，顶部 <strong>${nc} 个 emoji</strong> 对应 ${nc} 则独立故事（科技 / 恐怖 / 轻松 / 脑洞 / 冷笑话 / 温情），点按切换。</li>
+    <li>进入卷宗后，顶部 <strong>${nc} 个 emoji</strong> 对应 ${nc} 则独立故事（含经典盲人海龟汤与科技、职场、脑洞、冷笑话、温情），点按切换。</li>
     <li>点正文<strong>青色词</strong>入库；下方<strong>两词碰撞</strong>，须<strong>按顺序解锁</strong>。「毫无关联」与「来得太早」都算失误。</li>
     <li>每次失误扣 <strong>1</strong> 点理据（上限 <strong>${n}</strong>）；归零出局。</li>
     <li><strong>锦囊</strong>每关 <strong>${GAME_RULES.maxHints}</strong> 次，每用一次少一次；<strong>重来</strong>或切换故事会重置进度与锦囊。</li>
