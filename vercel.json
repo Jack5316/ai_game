@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm ci --prefix gemini_implementation",
+  "buildCommand": "npm run build --prefix gemini_implementation",
+  "outputDirectory": "gemini_implementation/dist"
+}
